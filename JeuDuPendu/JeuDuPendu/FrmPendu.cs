@@ -12,6 +12,10 @@ namespace JeuDuPendu
 {
     public partial class FrmPendu : Form
     {
+        private int etapePendu;
+        private int maxPendu = 10;
+        private string mot;
+
         /// <summary>
         /// Initialisation des objets graphiques
         /// </summary>
@@ -37,7 +41,10 @@ namespace JeuDuPendu
 
         // Préparation de la phase 1 (phase 1 = saisie du mot a chercher)
         private void PreparationPhase1()
+
         {
+            etapePendu = 0;
+            AffichageImage(etapePendu);
             grpTest.Enabled = false; // Désactivation de la zone de teste
             lblLettres.Text = ""; // Vide le label des lettres téstées
             lblResultat.Text = ""; // Vide le label qui affiche le résultat
@@ -95,6 +102,16 @@ namespace JeuDuPendu
                 // Verification qu'un mot a été saisie et qu'il soit correct
                 if(!txtMot.Text.Equals("") && MotCorrect(txtMot.Text))
                 {
+
+                    mot = txtMot.Text.ToUpper();  // Met le mot en majuscule et le mémorise
+                   
+                    // Rempli le zone de saisie de tirets a la place des lettres
+                    txtMot.Text = "";
+                    for (int k = 0; k < mot.Length; k++)
+                    {
+                        txtMot.Text += "-";
+                    }
+
                     PreparationPhase2(); // Préparation des objets graphiques pour la phase 2
                 }
                 else
@@ -125,6 +142,7 @@ namespace JeuDuPendu
                 lblLettres.Text = lblLettres.Text + lettre; // Ajout de la lettre téstée dans le label de lettres dèja téstées
                 cmbLettres.Items.Remove(lettre); // Suppression de la lettre séléctionnée du combo
                 cmbLettres.SelectedIndex = 0; // se positonne automatiquement sur la premier lettre présente
+                TraitementLettre(lettre);
             }
             catch // Dans le cas ou il y'a tantative de supprimer une lettre alors que le combo est vide
             {
@@ -132,5 +150,83 @@ namespace JeuDuPendu
             }
             
         }
+
+        //  Fonction qui permet d'afficher une image du pendu dans le PictureBox
+        private void AffichageImage(int num)
+        {
+            string chemin = @"C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\Resources\pendu"+num+".png";
+            pctPendu.Image = Image.FromFile(chemin);
+
+        }
+
+        // Affichage d'une image en fonction de l'etape 
+        private bool AffichagePendu()
+        {
+            etapePendu++;
+            AffichageImage(etapePendu); 
+            return (etapePendu == maxPendu); // Verification si le joueur a atteint le maximum
+        }
+
+        // Recherche la lettre dans le mot et remplace le tiret par la lettre si vrai
+        // Retourn vrai si la lettre est toruvée au moin une fois
+       
+        
+        private bool RechercheLettreDansMot(char lettre)
+        {
+          
+            int position = -1; // Position de la lettre dans le mot
+            bool trouve = false; // La lettre a elle été trouvée
+          
+            // Boucle sur la recherche de la lettre
+            do
+            {
+                // Récupère la position de la lettre ou -1 si pas trouvé
+                position = mot.IndexOf(lettre, position + 1);
+
+                // Si trouvé 
+                if (position != -1) 
+                {
+                    trouve = true; 
+
+                    // remplace les tiret par les lettres
+                    txtMot.Text = txtMot.Text.Remove(position, 1);
+                    txtMot.Text = txtMot.Text.Insert(position, lettre.ToString());
+                }
+
+            } while (position != -1);
+            return trouve;
+
+        }
+
+        // Traitement de la lettre récupéré
+        private void TraitementLettre(char lettre)
+        {
+            // Si la lettre a été trouvée
+            if(RechercheLettreDansMot(lettre))
+            {
+                // Si il n'y a plus de lettre a trouvé
+                if(txtMot.Text.IndexOf('-') == -1)
+                {
+                    FinJeu("Gangé");
+                }
+            }
+            else // Si la lettre n'a pas été trouvée
+            {
+                if(AffichagePendu())
+                {
+                    FinJeu("Perdu");
+                }
+            }
+        }
+
+        // Gère la quand le jeu est fini
+        private void FinJeu(string message)
+        {
+            lblResultat.Text = message;
+            txtMot.Text = mot;
+            grpTest.Enabled = false;
+            btnRejouer.Focus();
+        }
+        
     }
 }

@@ -85,5 +85,18 @@
   <ItemGroup>
     <None Include="Resources\refresh_6711474.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\pendu0.png" />
+    <Content Include="Resources\pendu1.png" />
+    <Content Include="Resources\pendu10.png" />
+    <Content Include="Resources\pendu2.png" />
+    <Content Include="Resources\pendu3.png" />
+    <Content Include="Resources\pendu4.png" />
+    <Content Include="Resources\pendu5.png" />
+    <Content Include="Resources\pendu6.png" />
+    <Content Include="Resources\pendu7.png" />
+    <Content Include="Resources\pendu8.png" />
+    <Content Include="Resources\pendu9.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
