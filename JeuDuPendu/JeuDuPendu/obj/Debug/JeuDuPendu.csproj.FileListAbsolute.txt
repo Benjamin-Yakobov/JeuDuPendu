@@ -1,0 +1,10 @@
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\bin\Debug\JeuDuPendu.exe.config
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\bin\Debug\JeuDuPendu.exe
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\bin\Debug\JeuDuPendu.pdb
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\obj\Debug\JeuDuPendu.csproj.AssemblyReference.cache
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\obj\Debug\JeuDuPendu.Properties.Resources.resources
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\obj\Debug\JeuDuPendu.csproj.GenerateResource.cache
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\obj\Debug\JeuDuPendu.csproj.CoreCompileInputs.cache
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\obj\Debug\JeuDuPendu.exe
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\obj\Debug\JeuDuPendu.pdb
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\obj\Debug\JeuDuPendu.FrmPendu.resources
