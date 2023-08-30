@@ -8,3 +8,7 @@ C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu d
 C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\obj\Debug\JeuDuPendu.exe
 C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\obj\Debug\JeuDuPendu.pdb
 C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\obj\Debug\JeuDuPendu.FrmPendu.resources
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\bin\Debug\JeuDuPendu.exe.manifest
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\bin\Debug\JeuDuPendu.application
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\obj\Debug\JeuDuPendu.exe.manifest
+C:\Users\Benjamin Yakobov\Desktop\Activités professionnelles\Jeu du pendu\Jeu du pendu - Application\JeuDuPendu\JeuDuPendu\JeuDuPendu\obj\Debug\JeuDuPendu.application
