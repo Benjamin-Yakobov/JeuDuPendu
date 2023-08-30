@@ -12,6 +12,92 @@ namespace JeuDuPendu
 {
     public partial class FrmPendu : Form
     {
+
+        private void CreeBoutons()
+        {
+            char[] tableauAlpha = new char[26]; // Création du tableau contenant les lettres de l'alphabet
+
+            // Remplissage du tableau 
+            for (int k = 0; k < 26; k++)
+            {
+                tableauAlpha[k] = (char)('A' + k);
+            }
+
+            // Propriétés
+            int sizeButton = 30; // Taille bouton
+            int nbLettresParLigne = 10; // Nombre de lettre par ligne
+            int posXButton = 6; // Position du 1er bouton a partir de la gauche
+            int posYButton = 18; // Position du 1er bouton a partir du haut
+
+            int col = 0;
+            int line = -1;
+
+            // Création des boutons 
+            for(int i = 0; i < 26; i++)
+            {
+                Button btn = new Button(); // Déclaration et création du bouton 
+                grpTest.Controls.Add(btn); // Ajout du bouton dans le conteneur grpTest
+                btn.Text = tableauAlpha[i].ToString(); // Affectation d'une lettre au bouton
+                btn.Size = new Size(sizeButton, sizeButton); // Dimensionne la taille du bouton
+
+                // Ecoute sur le clique du bouton 
+                btn.Click += new System.EventHandler(btnAlpha_Click);
+
+                col++; 
+
+                // chengement de ligne 
+                if(i % nbLettresParLigne == 0)
+                {
+                    line++;
+                    col = 0;
+                }
+
+                // Position des boutons dans le conteneur
+                btn.Location = new Point(posXButton + sizeButton * col, posYButton + sizeButton * line);
+            }
+        }
+        // Evenement clique sur un des boutons du conteneur
+        private void btnAlpha_Click(object sender, EventArgs e)
+        {
+            
+            Button btnLettre = ((Button)sender); // Recupère le bouton concerné
+            btnLettre.Enabled = false; // Désactive le bouton
+            GestionFocusBoutonLettre(); // Focus au premier bouton non désactivé
+          
+            // Recherche la lettre
+            char lettre = char.Parse(btnLettre.Text);
+            if (!RechercheLettreDansMot(lettre))
+            {
+                // Si la lettre n'a pas été trouvée
+                if (AffichagePendu())
+                {
+                    // Verification si c'est la fin du jeu
+                    FinJeu("PERDU");
+                }
+            }
+            else
+            {
+                // Si il n'y a plus de lettre à trouver
+                if (txtMot.Text.IndexOf('-') == -1)
+                {
+                    // s'il n'y a plus de tirets
+                    FinJeu("GAGNE");
+                }
+            }
+        }
+        
+        // Géstion des focus
+        private void GestionFocusBoutonLettre()
+        {
+            int k = 0;
+            while (!grpTest.Controls[k].Enabled)
+            {
+                k++;
+            }
+            grpTest.Controls[k].Focus();
+        }
+
+
         private int etapePendu;
         private int maxPendu = 10;
         private string mot;
@@ -23,20 +109,12 @@ namespace JeuDuPendu
         {
             InitializeComponent();
         }
-         
-        // Rempli le Combo avec les lettres de l'alphabet
-        private void RemplirCmbLettres()
-        {
-            cmbLettres.Items.Clear();
-            for(int k = 0; k < 26; k++)
-            {
-                cmbLettres.Items.Add((char)('A' + k));
-            }
-        }
+
         // S'execute au chargement
         private void Pendu_Load(object sender, EventArgs e)
         {
             PreparationPhase1();
+            CreeBoutons();
         }
 
         // Préparation de la phase 1 (phase 1 = saisie du mot a chercher)
@@ -46,7 +124,6 @@ namespace JeuDuPendu
             etapePendu = 0;
             AffichageImage(etapePendu);
             grpTest.Enabled = false; // Désactivation de la zone de teste
-            lblLettres.Text = ""; // Vide le label des lettres téstées
             lblResultat.Text = ""; // Vide le label qui affiche le résultat
             grpMot.Enabled = true; // Activation de la zone de saisie
             txtMot.Text = ""; // Vide la zone de saisie
@@ -59,9 +136,6 @@ namespace JeuDuPendu
         {
             grpMot.Enabled = false; // Désactivation de la zone de saisie
             grpTest.Enabled = true; // Activation de la zone de test
-            RemplirCmbLettres(); // Remplissage du combo avec les lettres de l'alphabet
-            btnTest.Focus(); // Focus sur le bouton de test
-            cmbLettres.SelectedIndex = 0;
         }
 
         private void btnRejouer_Click(object sender, EventArgs e)
@@ -90,7 +164,6 @@ namespace JeuDuPendu
         // Evenement : choix d'une lettre dans le menu déroulant
         private void cmbLettres_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnTest.Focus(); // Focus sur le bouton de test
         }
 
         // Evenement :  validation du mot saisie
@@ -135,20 +208,7 @@ namespace JeuDuPendu
         // Evenement : clique sur le bouton de test
         private void btnTest_Click(object sender, EventArgs e)
         {
-            
-            try
-            {
-                char lettre = char.Parse(cmbLettres.SelectedItem.ToString()); // Recupère dans la variable "lettre" la lettre séléctionnée
-                lblLettres.Text = lblLettres.Text + lettre; // Ajout de la lettre téstée dans le label de lettres dèja téstées
-                cmbLettres.Items.Remove(lettre); // Suppression de la lettre séléctionnée du combo
-                cmbLettres.SelectedIndex = 0; // se positonne automatiquement sur la premier lettre présente
-                TraitementLettre(lettre);
-            }
-            catch // Dans le cas ou il y'a tantative de supprimer une lettre alors que le combo est vide
-            {
-                grpTest.Enabled = false;
-            }
-            
+
         }
 
         //  Fonction qui permet d'afficher une image du pendu dans le PictureBox
@@ -224,7 +284,6 @@ namespace JeuDuPendu
         {
             lblResultat.Text = message;
             txtMot.Text = mot;
-            grpTest.Enabled = false;
             btnRejouer.Focus();
         }
         
